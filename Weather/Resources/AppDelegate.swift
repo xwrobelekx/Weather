@@ -16,13 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-//        WeatherController.shared.fetchWeeklyWeather(latitude: 40.7608, longitude: -111.8910) { (dailyWeathers) in
-//            print("\n\n\n print from closure \n\n")
-//            print(dailyWeathers?.compactMap{ $0.summary })
-//            
-//            print("\n\n from the source of truth \n\n")
-//            print(WeatherController.shared.dailyWeathers.compactMap{ $0.summary})
-//        }
+        
+        WeatherController.shared.location.requestLocation()
         
         return true
     }

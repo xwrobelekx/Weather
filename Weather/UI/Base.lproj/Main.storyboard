@@ -52,7 +52,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5Sg-GD-nbM" customClass="WeatherCollectionViewCell" customModule="Weather" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="weatherCell" id="5Sg-GD-nbM" customClass="WeatherCollectionViewCell" customModule="Weather" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="6" width="156" height="188"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -126,6 +126,7 @@
                     <connections>
                         <outlet property="cityNameLabel" destination="QF2-eD-r98" id="DCY-Nz-zY3"/>
                         <outlet property="temperatureLabel" destination="ZuQ-CD-UHa" id="uVJ-Fe-4E8"/>
+                        <outlet property="weatherCollectionView" destination="chw-Ub-nvs" id="v0I-vQ-sVT"/>
                         <outlet property="weatherSummaryLabel" destination="hZU-Dq-rV7" id="yDP-z3-9tF"/>
                     </connections>
                 </viewController>
