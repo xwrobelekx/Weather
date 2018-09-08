@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Weather View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="WeatherViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -52,7 +52,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5Sg-GD-nbM">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5Sg-GD-nbM" customClass="WeatherCollectionViewCell" customModule="Weather" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="6" width="156" height="188"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -72,23 +72,41 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Clear" translatesAutoresizingMaskIntoConstraints="NO" id="kay-W9-GiT">
-                                                    <rect key="frame" x="39" y="47" width="78" height="94"/>
+                                                    <rect key="frame" x="54.5" y="66" width="47" height="56"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6c-DE-hXR">
+                                                    <rect key="frame" x="15.5" y="34" width="125" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="la7-SU-xrc"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstItem="V6c-DE-hXR" firstAttribute="centerX" secondItem="5Sg-GD-nbM" secondAttribute="centerX" id="4CU-Yj-Dwp"/>
                                             <constraint firstItem="P37-Ma-bW6" firstAttribute="width" secondItem="5Sg-GD-nbM" secondAttribute="width" multiplier="0.8" id="5E7-ya-qTg"/>
                                             <constraint firstItem="6Af-L7-9ka" firstAttribute="top" secondItem="5Sg-GD-nbM" secondAttribute="top" constant="8" id="6XT-Th-zep"/>
                                             <constraint firstItem="6Af-L7-9ka" firstAttribute="centerX" secondItem="5Sg-GD-nbM" secondAttribute="centerX" id="Awu-TH-0UU"/>
-                                            <constraint firstItem="kay-W9-GiT" firstAttribute="height" secondItem="5Sg-GD-nbM" secondAttribute="height" multiplier="0.5" id="F6m-aa-wKW"/>
+                                            <constraint firstItem="V6c-DE-hXR" firstAttribute="width" secondItem="5Sg-GD-nbM" secondAttribute="width" multiplier="0.8" id="DAQ-FT-mpT"/>
+                                            <constraint firstItem="kay-W9-GiT" firstAttribute="height" secondItem="5Sg-GD-nbM" secondAttribute="height" multiplier="0.3" id="F6m-aa-wKW"/>
                                             <constraint firstItem="6Af-L7-9ka" firstAttribute="width" secondItem="5Sg-GD-nbM" secondAttribute="width" multiplier="0.8" id="Osu-Hy-hqK"/>
-                                            <constraint firstItem="kay-W9-GiT" firstAttribute="width" secondItem="5Sg-GD-nbM" secondAttribute="width" multiplier="0.5" id="XtV-au-F12"/>
+                                            <constraint firstItem="kay-W9-GiT" firstAttribute="width" secondItem="5Sg-GD-nbM" secondAttribute="width" multiplier="0.3" id="XtV-au-F12"/>
                                             <constraint firstItem="kay-W9-GiT" firstAttribute="centerX" secondItem="5Sg-GD-nbM" secondAttribute="centerX" id="b1C-U3-Vuq"/>
                                             <constraint firstItem="P37-Ma-bW6" firstAttribute="centerX" secondItem="5Sg-GD-nbM" secondAttribute="centerX" id="dFG-Va-JR1"/>
                                             <constraint firstItem="kay-W9-GiT" firstAttribute="centerY" secondItem="5Sg-GD-nbM" secondAttribute="centerY" id="inl-K2-c8j"/>
+                                            <constraint firstItem="V6c-DE-hXR" firstAttribute="height" secondItem="5Sg-GD-nbM" secondAttribute="height" id="n6H-z1-7Qw"/>
                                             <constraint firstAttribute="bottom" secondItem="P37-Ma-bW6" secondAttribute="bottom" constant="8" id="pNE-kk-Qsc"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="dayOFWeekLabel" destination="P37-Ma-bW6" id="7cI-zy-6T6"/>
+                                            <outlet property="iconImageView" destination="kay-W9-GiT" id="piy-O2-EdN"/>
+                                            <outlet property="summaryLabel" destination="6Af-L7-9ka" id="r8d-aq-MzE"/>
+                                            <outlet property="temperatureLabel" destination="V6c-DE-hXR" id="JMY-f0-Uvz"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -105,6 +123,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="bpr-bD-Ab0"/>
+                    <connections>
+                        <outlet property="cityNameLabel" destination="QF2-eD-r98" id="DCY-Nz-zY3"/>
+                        <outlet property="temperatureLabel" destination="ZuQ-CD-UHa" id="uVJ-Fe-4E8"/>
+                        <outlet property="weatherSummaryLabel" destination="hZU-Dq-rV7" id="yDP-z3-9tF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
