@@ -20,6 +20,8 @@ class WeatherController {
     
     let location = CLLocationManager()
     
+    var curentWeather : CurrentWeather?
+    
     
     let baseURL = URL(string: "https://api.darksky.net/forecast/")
     let apiSecret = "64eecaf19640a8c3d512d778d091a7ea"
@@ -61,6 +63,7 @@ class WeatherController {
             let weatherService = try decoder.decode(WeatherService.self, from: data)
                 let dailyWeathers  = weatherService.weeklyWeatherData.data
                 self.dailyWeathers = dailyWeathers
+                self.curentWeather = weatherService.currently
                 completion(dailyWeathers)
                 
             } catch {

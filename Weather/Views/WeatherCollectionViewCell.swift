@@ -22,10 +22,22 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    func stringFromTime(time: TimeInterval) -> String {
+     let formater = DateFormatter()
+        formater.dateFormat = "EEEE"
+        let date = Date(timeIntervalSince1970: time)
+        return formater.string(from: date)
+    }
     
     
     func updateViews() {
+        guard let dailyWeather = dailyWeather else {return}
         
+        summaryLabel.text = dailyWeather.summary
+        dayOFWeekLabel.text = stringFromTime(time: dailyWeather.time)
+        iconImageView.image = UIImage(named: dailyWeather.icon) ?? UIImage(named: "sunny")
+        temperatureLabel.text = "\(Int((dailyWeather.temperatureMax + dailyWeather.temperatureMin)/2))℉"
+       
     }
     
 }

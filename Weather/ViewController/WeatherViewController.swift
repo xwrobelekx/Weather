@@ -39,34 +39,73 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, UIColl
     }
     
     
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         weatherCollectionView.delegate = self
         weatherCollectionView.dataSource = self
+        fetchWeather()
         
-        
-        if CLLocationManager.locationServicesEnabled(){
-        WeatherController.shared.location.delegate = self
-            WeatherController.shared.location.desiredAccuracy = kCLLocationAccuracyThreeKilometers
-    }
+        view.addVerticalGradientLayer(topColor: #colorLiteral(red: 0.9893657565, green: 0.8969728947, blue: 0.0122530302, alpha: 1), bottomColor: #colorLiteral(red: 0.01936318539, green: 0.997133553, blue: 0.3177120388, alpha: 1))
+        //TODO: - Fix the location 
+//        if CLLocationManager.locationServicesEnabled(){
+//        WeatherController.shared.location.delegate = self
+//            WeatherController.shared.location.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+//    }
 
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         curentLocation = locations.first
     }
-
-
-    func fetchWeather(){
-       guard let latitude = curentLocation?.coordinate.latitude,
-        let longitude = curentLocation?.coordinate.longitude else {return}
-        
-        WeatherController.shared.fetchWeeklyWeather(latitude: latitude, longitude: longitude) { (_) in }
+    
+    func updateCurrentWeather() {
+        cityNameLabel.text = "Salt Lake City"
+        weatherSummaryLabel.text = WeatherController.shared.curentWeather?.summary
+        temperatureLabel.text = "\(Int(WeatherController.shared.curentWeather?.temperature ?? 0))℉"
     }
 
 
+    func fetchWeather(){
+//       guard let latitude = curentLocation?.coordinate.latitude,
+//        let longitude = curentLocation?.coordinate.longitude else {return}
+        let latitude = 40.7608
+        let longitude = -111.8910
+        
+        
+        WeatherController.shared.fetchWeeklyWeather(latitude: latitude, longitude: longitude) { (_) in
+            DispatchQueue.main.async {
+                self.weatherCollectionView.reloadData()
+                self.updateCurrentWeather()
+            }
+            
+        }
+    }
+
+}
+
+
+extension UIView {
+    
+    /*
+     Adds a vertical gradient layer with two **UIColors** to the **UIView**.
+     - Parameter topColor: The top **UIColor**.
+     - Parameter bottomColor: The bottom **UIColor**.
+     */
+    
+    func addVerticalGradientLayer(topColor:UIColor, bottomColor:UIColor) {
+        let gradient = CAGradientLayer()
+        gradient.frame = self.bounds
+        gradient.colors = [
+            topColor.cgColor,
+            bottomColor.cgColor
+        ]
+        
+        //define starting position of the gradient - screen starts at 0.0
+        gradient.locations = [0.0, 1.0]
+        gradient.startPoint = CGPoint(x: 0, y: 0)
+        gradient.endPoint = CGPoint(x: 0, y: 1)
+        self.layer.insertSublayer(gradient, at: 0)
+    }
 }
